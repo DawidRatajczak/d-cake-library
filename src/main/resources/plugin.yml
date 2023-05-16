@@ -1,0 +1,16 @@
+name: d-cake-library
+version: '${project.version}'
+main: pl.crazydev.dcakelibrary.DCakeLibrary
+api-version: 1.19
+commands:
+  colors:
+    description: shows colors
+  customitems:
+    description: custom items
+  test:
+    description: test command
+permissions:
+  d-cake-library.custom-items:
+    description: gets all custom items
+  d-cake-library.colors:
+    description: shows all colors

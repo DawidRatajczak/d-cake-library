@@ -1,0 +1,40 @@
+package pl.crazydev.dcakelibrary.text;
+
+public class Hex {
+    public static final String LIGHT_MINT = "<#b3ffec>";
+    public static final String Mint = "<#66ffd9>";
+    public static final String DARK_MINT = "<#00e6ac>";
+    public static final String LIGHT_BLUE = "<#80bfff>";
+    public static final String BLUE = "<#0080ff>";
+    public static final String DARK_BLUE = "<#004080>";
+    public static final String LIGHT_LIME = "<#80ff80>";
+    public static final String LIME = "<#00ff00>";
+    public static final String DARK_LIME = "<#00b300>";
+    public static final String LIGHT_GREEN = "<#8cd98c>";
+    public static final String GREEN = "<#40bf40>";
+    public static final String DARK_GREEN = "<#206020>";
+    public static final String LIGHT_AQUA = "<#99e6e6>";
+    public static final String AQUA = "<#32cdcd>";
+    public static final String DARK_AQUA = "<#196767>";
+    public static final String LIGHT_YELLOW = "<#ffff99>";
+    public static final String YELLOW = "<#ffff00>";
+    public static final String DARK_YELLOW = "<#cccc00>";
+    public static final String LIGHT_BROWN = "<#d9b38c>";
+    public static final String BROWN = "<#ac7339>";
+    public static final String DARK_BROWN = "<#604020>";
+    public static final String SALMON = "<#ff9f80>";
+    public static final String LIGHT_RED = "<#ff704d>";
+    public static final String RED = "<#e62e00>";
+    public static final String DARK_RED = "<#801a00>";
+    public static final String LIGHT_ORANGE = "<#ff944d>";
+    public static final String ORANGE = "<#ff6600>";
+    public static final String DARK_ORANGE = "<#cc5200>";
+    public static final String LIGHT_PURPLE = "<#dd99ff>";
+    public static final String PURPLE = "<#bb33ff>";
+    public static final String DARK_PURPLE = "<#7700b3>";
+    public static final String LIGHT_PINK = "<#ff99cc>";
+    public static final String PINK = "<#ff4da6>";
+    public static final String DARK_PINK = "<#cc0066>";
+    public static final String BLACK = "<#000000>";
+    public static final String WHITE = "<#ffffff>";
+}
