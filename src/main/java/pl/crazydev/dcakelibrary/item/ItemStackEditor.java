@@ -18,13 +18,13 @@ import pl.crazydev.dcakelibrary.log.Logger;
 import pl.crazydev.dcakelibrary.text.TextFormatter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class ItemStackEditor {
-    private ItemStack item;
-    private ItemMeta meta;
+    private final ItemStack item;
+    private final ItemMeta meta;
 
     private ItemStackEditor(ItemStack item) {
         this.item = item;
@@ -59,13 +59,32 @@ public class ItemStackEditor {
         return this;
     }
 
+    public ItemStackEditor addAttributeModifier(Attribute attribute, double amount, AttributeModifier.Operation operation) {
+        return addAttributeModifier(attribute, new AttributeModifier(
+                UUID.randomUUID(),
+                "generic.".concat(attribute.name().toLowerCase()),
+                amount,
+                operation
+        ));
+    }
+
+    public ItemStackEditor addAttributeModifier(Attribute attribute, double amount, AttributeModifier.Operation operation, EquipmentSlot slot) {
+        return addAttributeModifier(attribute, new AttributeModifier(
+                UUID.randomUUID(),
+                "generic.".concat(attribute.name().toLowerCase()),
+                amount,
+                operation,
+                slot
+        ));
+    }
+
     public ItemStackEditor addEnchant(Enchantment enchant, int level) {
         if (Enchantments.isCustomEnchant(enchant)) {
             if (ItemStacks.getEnchants(meta).containsKey(enchant)) {
                 removeEnchant(enchant);
             }
             List<String> lore = getLore();
-            lore.add(ItemStacks.constructEnchantName(enchant, level));
+            lore.add(Enchantments.constructEnchantName(enchant, level));
             meta.setLore(lore);
         }
         if (item.getType() == Material.ENCHANTED_BOOK) {
@@ -174,7 +193,7 @@ public class ItemStackEditor {
             return this;
         }
         if (Enchantments.isCustomEnchant(enchant)) {
-            String enchantName = ItemStacks.constructEnchantName(enchant, ItemStacks.getEnchantLevel(meta, enchant));
+            String enchantName = Enchantments.constructEnchantName(enchant, ItemStacks.getEnchantLevel(meta, enchant));
             Logger.log("Removed custom enchant lore: ".concat(enchantName));
             removeLoreLine(enchantName);
         }

@@ -2,13 +2,17 @@ package pl.crazydev.dcakelibrary.item;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataType;
-import pl.crazydev.dcakelibrary.data.persistence.persistentDataType.CustomPersistentDataType;
-import pl.crazydev.dcakelibrary.item.interact.ClickAction;
+import pl.crazydev.dcakelibrary.data.persistence.nbt.CustomPersistentDataType;
+import pl.crazydev.dcakelibrary.item.action.ClickAction;
+import pl.crazydev.dcakelibrary.item.action.EatAction;
 
 public class ItemStackBuilder {
     private final ItemStackEditor editor;
@@ -66,6 +70,11 @@ public class ItemStackBuilder {
         return this;
     }
 
+    public ItemStackBuilder setEatAction(EatAction action) {
+        setNbtData(ItemStacks.EAT_ACTION_NAMESPACE, CustomPersistentDataType.EAT_ACTION, action);
+        return this;
+    }
+
     public ItemStackBuilder setFeedAmount(int feed) {
         setNbtData(ItemStacks.FEED_AMOUNT_NAMESPACE, PersistentDataType.INTEGER, feed);
         return this;
@@ -73,6 +82,21 @@ public class ItemStackBuilder {
 
     public ItemStackBuilder setAmount(int amount) {
         editor.getItem().setAmount(amount);
+        return this;
+    }
+
+    public ItemStackBuilder addAttributeModifier(Attribute attribute, AttributeModifier modifier) {
+        editor.addAttributeModifier(attribute, modifier);
+        return this;
+    }
+
+    public ItemStackBuilder addAttributeModifier(Attribute attribute, double amount, AttributeModifier.Operation operation) {
+        editor.addAttributeModifier(attribute, amount, operation);
+        return this;
+    }
+
+    public ItemStackBuilder addAttributeModifier(Attribute attribute, double amount, AttributeModifier.Operation operation, EquipmentSlot slot) {
+        editor.addAttributeModifier(attribute, amount, operation, slot);
         return this;
     }
 

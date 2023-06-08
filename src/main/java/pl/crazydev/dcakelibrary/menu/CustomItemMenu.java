@@ -35,11 +35,12 @@ public class CustomItemMenu extends PaginatedInventoryMenu<DCakeLibrary> {
                 continue;
             }
 
-            setSlot(item, 1, index, page);
+            setSlot(item, index, page);
 
             if(index >= 53) {
                 index = 0;
                 page++;
+                continue;
             }
 
             index++;

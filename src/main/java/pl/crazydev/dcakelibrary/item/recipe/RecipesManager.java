@@ -13,13 +13,12 @@ public class RecipesManager {
 
     public void registerRecipe(Recipe recipe, NamespacedKey key) {
         Bukkit.addRecipe(recipe);
-
         registeredRecipes.add(key);
     }
 
     public void unlockRecipesForPlayers() {
         Bukkit.getOnlinePlayers()
-                .forEach(player -> unlockRecipesForPlayer(player));
+                .forEach(this::unlockRecipesForPlayer);
     }
 
     public void unlockRecipesForPlayer(Player player) {

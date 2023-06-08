@@ -1,4 +1,4 @@
-package pl.crazydev.dcakelibrary.item.interact;
+package pl.crazydev.dcakelibrary.item.action;
 
 import org.bukkit.event.player.PlayerInteractEvent;
 

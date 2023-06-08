@@ -1,4 +1,4 @@
-package pl.crazydev.dcakelibrary.log;
+package pl.crazydev.dcakelibrary.item.recipe;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Logging {
+public @interface RegisterRecipes {
 }

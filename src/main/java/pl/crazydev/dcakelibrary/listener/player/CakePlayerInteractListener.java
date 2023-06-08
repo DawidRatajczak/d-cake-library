@@ -8,10 +8,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import pl.crazydev.dcakelibrary.DCakeLibrary;
-import pl.crazydev.dcakelibrary.data.persistence.persistentDataType.CustomPersistentDataType;
+import pl.crazydev.dcakelibrary.data.persistence.nbt.CustomPersistentDataType;
+import pl.crazydev.dcakelibrary.item.ItemStacks;
+import pl.crazydev.dcakelibrary.item.action.ClickAction;
 import pl.crazydev.dcakelibrary.listener.EventListener;
 import pl.crazydev.dcakelibrary.listener.RegisterListener;
 import pl.crazydev.dcakelibrary.plugin.PluginComponent;
+
+import java.util.Optional;
 
 
 @RegisterListener
@@ -24,14 +28,12 @@ public class CakePlayerInteractListener extends EventListener<DCakeLibrary> {
     @EventHandler
     private void onEvent(PlayerInteractEvent event) {
         ItemStack mainHand = event.getPlayer().getInventory().getItemInMainHand();
-        NamespacedKey key = new NamespacedKey(plugin, "clickAction");
+        NamespacedKey key = new NamespacedKey(plugin, ItemStacks.CLICK_ACTION_NAMESPACE);
 
         if(mainHand.getItemMeta() != null) {
-            PersistentDataContainer itemData = mainHand.getItemMeta().getPersistentDataContainer();
+            Optional<ClickAction> clickActionOptional = ItemStacks.getNbtData(mainHand, ItemStacks.CLICK_ACTION_NAMESPACE, CustomPersistentDataType.CLICK_ACTION);
 
-            if(itemData.has(key, CustomPersistentDataType.CLICK_ACTION)) {
-                itemData.get(key, CustomPersistentDataType.CLICK_ACTION).onClick(event);
-            }
+            clickActionOptional.ifPresent(clickAction -> clickAction.onClick(event));
         }
 
         Block block = event.getClickedBlock();

@@ -23,6 +23,10 @@ public abstract class InventoryMenu<T extends JavaPlugin> extends PlayerMenu {
         content[index] = createIcon(item, id, hideAttributes);
     }
 
+    protected void setSlot(ItemStack item, int index) {
+        content[index] = item;
+    }
+
     protected void setGlowing(int index) {
         if(content[index] == null) {
             return;

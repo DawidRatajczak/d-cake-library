@@ -8,15 +8,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import pl.crazydev.dcakelibrary.DCakeLibrary;
-import pl.crazydev.dcakelibrary.log.Logger;
-import pl.crazydev.dcakelibrary.text.TextFormatter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public abstract class ItemStacks {
-    public static final String IS_CUSTOM_ITEM_NAMESPACE = "isCustomItem";
-    public static final String FEED_AMOUNT_NAMESPACE = "feedAmount";
-    public static final String CLICK_ACTION_NAMESPACE = "clickAction";
+    public static final String IS_CUSTOM_ITEM_NAMESPACE = "is_custom_item";
+    public static final String FEED_AMOUNT_NAMESPACE = "feed_amount";
+    public static final String CLICK_ACTION_NAMESPACE = "click_action";
+    public static final String EAT_ACTION_NAMESPACE = "eat_action";
 
     public static boolean isCustomItemStack(ItemStack item) {
         Optional<Integer> isCustomItemStack = getNbtData(item, IS_CUSTOM_ITEM_NAMESPACE, PersistentDataType.INTEGER);
@@ -74,96 +75,25 @@ public abstract class ItemStacks {
     public static int getEnchantLevel(ItemMeta meta, Enchantment enchant) {
         for (Map.Entry<Enchantment, Integer> entry : ItemStacks.getEnchants(meta).entrySet()) {
             if (entry.getKey().equals(enchant)) {
-                Logger.log("Enchant: " + entry.getKey().getKey().getNamespace());
                 return entry.getValue();
             }
         }
         return 0;
     }
 
-    public static String constructEnchantName(Enchantment enchant, int level) {
-        String enchantName = TextFormatter.color("&7"
-                .concat(enchant.getKey().getKey().substring(0, 1).toUpperCase())
-                .concat(enchant.getKey().getKey().substring(1)));
-        if (level > 1) {
-            Logger.log("Enchant level is above 1: " + level);
-            enchantName = enchantName
-                    .concat(" ")
-                    .concat(TextFormatter.toRoman(level));
-        }
-        Logger.log("Enchant name in method: " + enchantName);
-        return enchantName;
-    }
-
     public static boolean isTool(ItemStack item) {
-        switch (item.getType()) {
-            case WOODEN_AXE:
-            case WOODEN_HOE:
-            case WOODEN_PICKAXE:
-            case WOODEN_SHOVEL:
-            case WOODEN_SWORD:
-            case STONE_AXE:
-            case STONE_HOE:
-            case STONE_PICKAXE:
-            case STONE_SHOVEL:
-            case STONE_SWORD:
-            case IRON_AXE:
-            case IRON_HOE:
-            case IRON_PICKAXE:
-            case IRON_SHOVEL:
-            case IRON_SWORD:
-            case GOLDEN_AXE:
-            case GOLDEN_HOE:
-            case GOLDEN_PICKAXE:
-            case GOLDEN_SHOVEL:
-            case GOLDEN_SWORD:
-            case DIAMOND_AXE:
-            case DIAMOND_HOE:
-            case DIAMOND_PICKAXE:
-            case DIAMOND_SHOVEL:
-            case DIAMOND_SWORD:
-            case NETHERITE_AXE:
-            case NETHERITE_HOE:
-            case NETHERITE_PICKAXE:
-            case NETHERITE_SHOVEL:
-            case NETHERITE_SWORD:
-            case BOW:
-            case FLINT_AND_STEEL:
-            case SHEARS:
-            case CROSSBOW:
-            case TRIDENT:
-            case SHIELD:
-            case FISHING_ROD:
-                return true;
-        }
-        return false;
+        return switch (item.getType()) {
+            case WOODEN_AXE, WOODEN_HOE, WOODEN_PICKAXE, WOODEN_SHOVEL, WOODEN_SWORD, STONE_AXE, STONE_HOE, STONE_PICKAXE, STONE_SHOVEL, STONE_SWORD, IRON_AXE, IRON_HOE, IRON_PICKAXE, IRON_SHOVEL, IRON_SWORD, GOLDEN_AXE, GOLDEN_HOE, GOLDEN_PICKAXE, GOLDEN_SHOVEL, GOLDEN_SWORD, DIAMOND_AXE, DIAMOND_HOE, DIAMOND_PICKAXE, DIAMOND_SHOVEL, DIAMOND_SWORD, NETHERITE_AXE, NETHERITE_HOE, NETHERITE_PICKAXE, NETHERITE_SHOVEL, NETHERITE_SWORD, BOW, FLINT_AND_STEEL, SHEARS, CROSSBOW, TRIDENT, SHIELD, FISHING_ROD ->
+                    true;
+            default -> false;
+        };
     }
 
     public static boolean isArmor(ItemStack item) {
-        switch (item.getType()) {
-            case DIAMOND_CHESTPLATE:
-            case DIAMOND_BOOTS:
-            case DIAMOND_HELMET:
-            case DIAMOND_LEGGINGS:
-            case IRON_BOOTS:
-            case IRON_CHESTPLATE:
-            case IRON_HELMET:
-            case IRON_LEGGINGS:
-            case GOLDEN_BOOTS:
-            case GOLDEN_CHESTPLATE:
-            case GOLDEN_HELMET:
-            case GOLDEN_LEGGINGS:
-            case LEATHER_BOOTS:
-            case LEATHER_CHESTPLATE:
-            case LEATHER_HELMET:
-            case LEATHER_LEGGINGS:
-            case NETHERITE_HELMET:
-            case NETHERITE_BOOTS:
-            case NETHERITE_CHESTPLATE:
-            case NETHERITE_LEGGINGS:
-            case TURTLE_HELMET:
-                return true;
-        }
-        return false;
+        return switch (item.getType()) {
+            case DIAMOND_CHESTPLATE, DIAMOND_BOOTS, DIAMOND_HELMET, DIAMOND_LEGGINGS, IRON_BOOTS, IRON_CHESTPLATE, IRON_HELMET, IRON_LEGGINGS, GOLDEN_BOOTS, GOLDEN_CHESTPLATE, GOLDEN_HELMET, GOLDEN_LEGGINGS, LEATHER_BOOTS, LEATHER_CHESTPLATE, LEATHER_HELMET, LEATHER_LEGGINGS, NETHERITE_HELMET, NETHERITE_BOOTS, NETHERITE_CHESTPLATE, NETHERITE_LEGGINGS, TURTLE_HELMET ->
+                    true;
+            default -> false;
+        };
     }
 }

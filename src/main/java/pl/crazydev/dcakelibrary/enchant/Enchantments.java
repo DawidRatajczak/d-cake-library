@@ -2,6 +2,7 @@ package pl.crazydev.dcakelibrary.enchant;
 
 import org.bukkit.enchantments.Enchantment;
 import pl.crazydev.dcakelibrary.log.Logger;
+import pl.crazydev.dcakelibrary.text.TextFormatter;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -31,5 +32,17 @@ public class Enchantments {
         } catch (NoSuchFieldException | IllegalAccessException exception) {
             Logger.error("Failed to register enchant ".concat(enchant.getKey().getNamespace()));
         }
+    }
+
+    public static String constructEnchantName(Enchantment enchant, int level) {
+        String enchantName = TextFormatter.color("&7"
+                .concat(enchant.getKey().getKey().substring(0, 1).toUpperCase())
+                .concat(enchant.getKey().getKey().substring(1)));
+        if (level > 1) {
+            enchantName = enchantName
+                    .concat(" ")
+                    .concat(TextFormatter.toRoman(level));
+        }
+        return enchantName.replace("_", " ");
     }
 }

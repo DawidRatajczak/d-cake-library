@@ -33,6 +33,10 @@ public abstract class PaginatedInventoryMenu<T extends JavaPlugin> extends Playe
         content[page][index] = createIcon(item, id, hideAttributes);
     }
 
+    public void setSlot(ItemStack icon, int index, int page) {
+        content[page][index] = icon;
+    }
+
     public int getCurrentPage() {
         return currentPage;
     }

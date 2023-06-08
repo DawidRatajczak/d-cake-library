@@ -1,6 +1,5 @@
 package pl.crazydev.dcakelibrary.command;
 
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import pl.crazydev.dcakelibrary.DCakeLibrary;
@@ -17,9 +16,6 @@ public class TestCommand extends Command<DCakeLibrary>{
 
     @Override
     protected void onPlayerCommand(Player player, org.bukkit.command.Command command, String[] args) {
-        Logger.log(ItemStacks.getEnchants(player.getInventory().getItemInMainHand()));
-
-        Logger.log(((EnchantmentStorageMeta)player.getInventory().getItemInMainHand().getItemMeta()).getStoredEnchants());
 
     }
 }

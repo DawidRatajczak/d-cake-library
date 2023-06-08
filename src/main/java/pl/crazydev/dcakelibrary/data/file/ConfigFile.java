@@ -1,4 +1,4 @@
-package pl.crazydev.dcakelibrary.data.file.configFile;
+package pl.crazydev.dcakelibrary.data.file;
 
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -16,6 +16,10 @@ public abstract class ConfigFile {
 
     public ConfigFile() {
         reloadConfig();
+    }
+
+    public static ConfigFile of(OfflinePlayer player) {
+        return new PlayerConfigFile(player);
     }
 
     public abstract String getConfigFileName();

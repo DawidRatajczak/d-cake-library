@@ -1,4 +1,4 @@
-package pl.crazydev.dcakelibrary.data.persistence.persistentDataType;
+package pl.crazydev.dcakelibrary.data.persistence.nbt;
 
 import lombok.AllArgsConstructor;
 import org.bukkit.persistence.PersistentDataAdapterContext;
